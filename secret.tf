@@ -1,10 +1,10 @@
 resource "aws_secretsmanager_secret" "aurora_secret" {
-  name = "rds/${var.identifier}"
+  name = "rds/mysql/${var.identifier}"
 }
 
 resource "aws_secretsmanager_secret_version" "aurora_secret_value" {
   secret_id     = aws_secretsmanager_secret.aurora_secret.id
-  secret_string = yamlencode(local.secret_value)
+  secret_string = jsonencode(local.secret_value)
 }
 
 locals {
