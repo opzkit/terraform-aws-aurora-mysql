@@ -30,18 +30,14 @@ variable "master_username" {
   description = "Username for master user"
 }
 
-variable "vpc_id" {
-  type = string
+variable "vpc" {
+  type        = object({ id : string, cidr_block : string })
+  description = "The VPC to create the cluster in"
 }
 
 variable "subnet_ids" {
   type        = list(string)
   description = "List of subnet ids where cluster should be located"
-}
-
-variable "security_group_names" {
-  type        = list(string)
-  description = "List of security group names that should have access to the DB cluster"
 }
 
 variable "skip_final_snapshot" {
