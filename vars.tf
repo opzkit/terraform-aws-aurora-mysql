@@ -45,3 +45,9 @@ variable "skip_final_snapshot" {
   default     = false
   description = "Store final snapshot or not when destroying database"
 }
+
+variable "cluster_parameters" {
+  type        = map(string)
+  default     = {}
+  description = "cluster parameter group overrides"
+}

@@ -31,10 +31,12 @@ resource "aws_rds_cluster" "default" {
   preferred_backup_window = "03:00-05:00"
   db_subnet_group_name    = aws_db_subnet_group.default.name
   vpc_security_group_ids = [
-  aws_security_group.allow_mysql.id]
-  skip_final_snapshot       = var.skip_final_snapshot
-  final_snapshot_identifier = "${var.identifier}-final"
-  storage_encrypted         = true
+    aws_security_group.allow_mysql.id
+  ]
+  skip_final_snapshot             = var.skip_final_snapshot
+  final_snapshot_identifier       = "${var.identifier}-final"
+  storage_encrypted               = true
+  db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_parameters.name
 }
 
 resource "aws_rds_cluster_instance" "writer" {
@@ -43,4 +45,18 @@ resource "aws_rds_cluster_instance" "writer" {
   instance_class     = var.writer_instance_type
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
+}
+
+resource "aws_rds_cluster_parameter_group" "cluster_parameters" {
+  family = "aurora-mysql5.7"
+  name   = "${var.identifier}-cluster-parameters"
+
+  dynamic "parameter" {
+    for_each = var.cluster_parameters
+    content {
+      name         = parameter.key
+      value        = parameter.value
+      apply_method = "pending-reboot"
+    }
+  }
 }
