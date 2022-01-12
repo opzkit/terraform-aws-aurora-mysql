@@ -57,3 +57,9 @@ variable "kms_key_arn" {
   default     = ""
   description = "KMS key to use for encryption"
 }
+
+variable "enhanced_monitoring" {
+  type        = bool
+  default     = false
+  description = "Enable enhanced monitor on the instance"
+}
