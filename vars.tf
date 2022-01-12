@@ -51,3 +51,9 @@ variable "cluster_parameters" {
   default     = {}
   description = "cluster parameter group overrides"
 }
+
+variable "kms_key_arn" {
+  type        = string
+  default     = ""
+  description = "KMS key to use for encryption"
+}

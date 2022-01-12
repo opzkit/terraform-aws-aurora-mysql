@@ -37,6 +37,7 @@ resource "aws_rds_cluster" "default" {
   final_snapshot_identifier       = "${var.identifier}-final"
   storage_encrypted               = true
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_parameters.name
+  kms_key_id                      = var.kms_key_arn == "" ? null : var.kms_key_arn
 }
 
 resource "aws_rds_cluster_instance" "writer" {
