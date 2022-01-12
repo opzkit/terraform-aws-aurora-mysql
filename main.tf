@@ -17,6 +17,13 @@ resource "aws_security_group" "allow_mysql" {
     to_port     = 0
     cidr_blocks = [var.vpc.cidr_block]
   }
+  # This is probably secure enough - can be removed and setup externally if needed...
+  ingress {
+    from_port   = 3306
+    protocol    = "TCP"
+    to_port     = 3306
+    cidr_blocks = [var.vpc.cidr_block]
+  }
 }
 
 resource "aws_rds_cluster" "default" {
