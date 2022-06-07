@@ -57,6 +57,20 @@ resource "aws_rds_cluster_instance" "writer" {
   monitoring_role_arn = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
 }
 
+
+resource "aws_rds_cluster_instance" "reader" {
+  count               = var.reader_instance_type ? 0 : 1
+  cluster_identifier  = aws_rds_cluster.default.cluster_identifier
+  identifier          = "${var.identifier}-reader"
+  instance_class      = var.reader_instance_type
+  engine              = aws_rds_cluster.default.engine
+  engine_version      = aws_rds_cluster.default.engine_version
+  monitoring_interval = var.enhanced_monitoring ? 60 : 0
+  monitoring_role_arn = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
+  promotion_tier      = 1
+
+}
+
 resource "aws_rds_cluster_parameter_group" "cluster_parameters" {
   family = "aurora-mysql5.7"
   name   = "${var.identifier}-cluster-parameters"

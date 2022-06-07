@@ -9,12 +9,14 @@ resource "aws_secretsmanager_secret_version" "aurora_secret_value" {
 
 locals {
   secret_value = {
-    DB_USERNAME = var.master_username
-    DB_PASSWORD = local.password
-    DB_NAME     = aws_rds_cluster.default.cluster_identifier
-    DB_PORT     = aws_rds_cluster.default.port
-    DB_HOST     = aws_rds_cluster.default.endpoint
+    DB_USERNAME    = var.master_username
+    DB_PASSWORD    = local.password
+    DB_NAME        = aws_rds_cluster.default.cluster_identifier
+    DB_PORT        = aws_rds_cluster.default.port
+    DB_HOST        = aws_rds_cluster.default.endpoint
+    DB_READER_HOST = local.reader_instance_endpoint
   }
+  reader_instance_endpoint = var.reader_instance_type ? "" : aws_rds_cluster_instance.reader[0].endpoint
   password = random_password.password.result
 }
 

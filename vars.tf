@@ -63,3 +63,9 @@ variable "enhanced_monitoring" {
   default     = false
   description = "Enable enhanced monitor on the instance"
 }
+
+variable "reader_instance_type" {
+  type        = string
+  description = "Instance type of writers"
+  default     = null
+}
