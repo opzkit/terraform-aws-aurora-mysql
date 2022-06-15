@@ -59,7 +59,7 @@ resource "aws_rds_cluster_instance" "writer" {
 
 
 resource "aws_rds_cluster_instance" "reader" {
-  count               = var.reader_instance_type ? 0 : 1
+  count               = var.reader_instance_type == null ? 0 : 1
   cluster_identifier  = aws_rds_cluster.default.cluster_identifier
   identifier          = "${var.identifier}-reader"
   instance_class      = var.reader_instance_type
