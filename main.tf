@@ -45,30 +45,35 @@ resource "aws_rds_cluster" "default" {
   storage_encrypted               = true
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_parameters.name
   kms_key_id                      = var.kms_key_arn == "" ? null : var.kms_key_arn
+  enabled_cloudwatch_logs_exports = ["error", "general", "slowquery"]
 }
 
 resource "aws_rds_cluster_instance" "writer" {
-  cluster_identifier  = aws_rds_cluster.default.cluster_identifier
-  identifier          = "${var.identifier}-writer"
-  instance_class      = var.writer_instance_type
-  engine              = aws_rds_cluster.default.engine
-  engine_version      = aws_rds_cluster.default.engine_version
-  monitoring_interval = var.enhanced_monitoring ? 60 : 0
-  monitoring_role_arn = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
+  cluster_identifier                    = aws_rds_cluster.default.cluster_identifier
+  identifier                            = "${var.identifier}-writer"
+  instance_class                        = var.writer_instance_type
+  engine                                = aws_rds_cluster.default.engine
+  engine_version                        = aws_rds_cluster.default.engine_version
+  monitoring_interval                   = var.enhanced_monitoring ? 60 : 0
+  monitoring_role_arn                   = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
+  performance_insights_kms_key_id       = var.kms_key_arn == "" ? null : var.kms_key_arn
+  performance_insights_enabled          = local.performance_insights_writer_enabled
+  performance_insights_retention_period = local.performance_insights_writer_enabled ? var.performance_insights_retention_period : null
 }
 
-
 resource "aws_rds_cluster_instance" "reader" {
-  count               = var.reader_instance_type == null ? 0 : 1
-  cluster_identifier  = aws_rds_cluster.default.cluster_identifier
-  identifier          = "${var.identifier}-reader"
-  instance_class      = var.reader_instance_type
-  engine              = aws_rds_cluster.default.engine
-  engine_version      = aws_rds_cluster.default.engine_version
-  monitoring_interval = var.enhanced_monitoring ? 60 : 0
-  monitoring_role_arn = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
-  promotion_tier      = 1
-
+  count                                 = var.reader_instance_type == null ? 0 : 1
+  cluster_identifier                    = aws_rds_cluster.default.cluster_identifier
+  identifier                            = "${var.identifier}-reader"
+  instance_class                        = var.reader_instance_type
+  engine                                = aws_rds_cluster.default.engine
+  engine_version                        = aws_rds_cluster.default.engine_version
+  monitoring_interval                   = var.enhanced_monitoring ? 60 : 0
+  monitoring_role_arn                   = var.enhanced_monitoring ? aws_iam_role.rds_enhanced_monitoring[0].arn : null
+  promotion_tier                        = 1
+  performance_insights_kms_key_id       = var.kms_key_arn == "" ? null : var.kms_key_arn
+  performance_insights_enabled          = local.performance_insights_reader_enabled
+  performance_insights_retention_period = local.performance_insights_reader_enabled ? var.performance_insights_retention_period : null
 }
 
 resource "aws_rds_cluster_parameter_group" "cluster_parameters" {
@@ -76,11 +81,35 @@ resource "aws_rds_cluster_parameter_group" "cluster_parameters" {
   name   = "${var.identifier}-cluster-parameters"
 
   dynamic "parameter" {
-    for_each = var.cluster_parameters
+    for_each = merge(var.cluster_parameters, local.default_cluster_parameters)
     content {
       name         = parameter.key
       value        = parameter.value
       apply_method = "pending-reboot"
     }
+  }
+}
+
+locals {
+  default_cluster_parameters = {
+    "performance_schema" = 1
+  }
+
+  performance_insights_reader_enabled = lookup(
+    local.instance_types_performance_insights_enabled,
+    try(regex("(db\\..*)\\..*", var.reader_instance_type)[0],
+      ""
+    ),
+  true)
+  performance_insights_writer_enabled = lookup(
+    local.instance_types_performance_insights_enabled,
+    try(regex("(db\\..*)\\..*", var.writer_instance_type)[0],
+      ""
+    ),
+  true)
+
+  instance_types_performance_insights_enabled = {
+    "db.t2" : false,
+    "db.t3" : false,
   }
 }

@@ -17,7 +17,7 @@ locals {
     DB_READER_HOST = local.reader_instance_endpoint
   }
   reader_instance_endpoint = var.reader_instance_type == null ? "" : aws_rds_cluster_instance.reader[0].endpoint
-  password = random_password.password.result
+  password                 = random_password.password.result
 }
 
 resource "random_password" "password" {
