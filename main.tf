@@ -59,6 +59,7 @@ resource "aws_rds_cluster_instance" "writer" {
   performance_insights_kms_key_id       = var.kms_key_arn == "" ? null : var.kms_key_arn
   performance_insights_enabled          = local.performance_insights_writer_enabled
   performance_insights_retention_period = local.performance_insights_writer_enabled ? var.performance_insights_retention_period : null
+  ca_cert_identifier                    = var.ca_cert_identifier
 }
 
 resource "aws_rds_cluster_instance" "reader" {
@@ -74,6 +75,7 @@ resource "aws_rds_cluster_instance" "reader" {
   performance_insights_kms_key_id       = var.kms_key_arn == "" ? null : var.kms_key_arn
   performance_insights_enabled          = local.performance_insights_reader_enabled
   performance_insights_retention_period = local.performance_insights_reader_enabled ? var.performance_insights_retention_period : null
+  ca_cert_identifier                    = var.ca_cert_identifier
 }
 
 resource "aws_rds_cluster_parameter_group" "cluster_parameters" {

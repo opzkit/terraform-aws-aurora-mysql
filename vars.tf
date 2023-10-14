@@ -77,3 +77,9 @@ variable "performance_insights_retention_period" {
   Performance insights retention period in days, 7 days is free of charge. Read more here: https://aws.amazon.com/rds/performance-insights/pricing
 EOT
 }
+
+variable "ca_cert_identifier" {
+  type        = string
+  default     = null
+  description = "The CA cert identifier to use"
+}
