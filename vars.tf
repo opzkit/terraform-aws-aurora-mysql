@@ -72,6 +72,7 @@ variable "reader_instance_type" {
 
 variable "performance_insights_retention_period" {
   default     = 7
+  type        = number
   description = <<EOT
   Performance insights is enabled by default, not all instance types are supported: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.Overview.Engines.html.
   Performance insights retention period in days, 7 days is free of charge. Read more here: https://aws.amazon.com/rds/performance-insights/pricing
