@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.1.0...v0.1.1) (2025-07-08)
+
+
+### Miscellaneous Chores
+
+* **deps:** update pre-commit hook antonbabenko/pre-commit-terraform to v1.99.5 ([#36](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/36)) ([d285e01](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/d285e01a0eb4868c92f753bb2803f9cf3fa5820d))
+
 ## [0.1.0](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.0.11...v0.1.0) (2025-06-19)
 
 
