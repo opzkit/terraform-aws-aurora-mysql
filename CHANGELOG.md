@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.1](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.1.0...v0.1.1) (2025-08-12)
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/checkout action to v4.3.0 ([#41](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/41)) ([54fe13d](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/54fe13d062eea127548423480e75d56a6eec276a))
+* **deps:** update actions/checkout action to v5 ([#42](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/42)) ([6e46eab](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/6e46eab73c0920d27828a8d7f43ff8b1c9f51fbd))
+* **deps:** update actions/checkout digest to 08eba0b ([#40](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/40)) ([f777cfd](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/f777cfd9f31c017d8eb8dba6ab5cf4c0ed2a4c0a))
+* **deps:** update pre-commit hook antonbabenko/pre-commit-terraform to v1.100.0 ([#38](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/38)) ([1619a37](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/1619a372ad09ffe80ee4a87f1e7074189aadfaef))
+* **deps:** update pre-commit hook antonbabenko/pre-commit-terraform to v1.99.5 ([#36](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/36)) ([d285e01](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/d285e01a0eb4868c92f753bb2803f9cf3fa5820d))
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v6 ([#39](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/39)) ([adb3cf8](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/adb3cf85a059e96e1a7177424e3a4fb5df484aed))
+* **deps:** update terraform-linters/setup-tflint action to v5 ([#43](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/43)) ([cf824f3](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/cf824f3f4dace36cb2539301c4de5c1812f0479f))
+
 ## [0.1.0](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.0.11...v0.1.0) (2025-06-19)
 
 
