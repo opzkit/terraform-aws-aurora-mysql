@@ -10,5 +10,6 @@ crash.log
 *.tfvars
 
 
+.terraform.lock.hcl
 examples/**/.terraform.lock.hcl
 .idea
