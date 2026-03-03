@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.1.1...v0.2.0) (2026-03-03)
+
+
+### Features
+
+* parameterize backup retention and storage type ([#117](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/117)) ([beb701c](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/beb701c0cb110abfe6fd414200e3c62b0f12a9d6))
+
+
+### Miscellaneous Chores
+
+* **deps:** update hashicorp/setup-terraform action to v4 ([#115](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/115)) ([204af68](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/204af68eb8127adef46a780ef50d4e4391f9fc06))
+* **deps:** update pre-commit hook renovatebot/pre-commit-hooks to v43.31.1 ([#113](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/113)) ([a89fcd3](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/a89fcd383b2768c7488d473cfa82ddc3a11e3e5c))
+* **deps:** update pre-commit hook renovatebot/pre-commit-hooks to v43.46.6 ([#116](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/116)) ([5d3e141](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/5d3e141fdf123bf0e9888e22c746d3580aef65e0))
+
 ## [0.1.1](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.1.0...v0.1.1) (2026-02-17)
 
 
