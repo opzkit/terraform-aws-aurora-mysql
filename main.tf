@@ -34,7 +34,7 @@ resource "aws_rds_cluster" "default" {
   database_name           = var.db_name
   master_username         = var.master_username
   master_password         = local.password
-  backup_retention_period = 14
+  backup_retention_period = var.backup_retention_period
   preferred_backup_window = "03:00-05:00"
   db_subnet_group_name    = aws_db_subnet_group.default.name
   vpc_security_group_ids = [
@@ -43,6 +43,7 @@ resource "aws_rds_cluster" "default" {
   skip_final_snapshot             = var.skip_final_snapshot
   final_snapshot_identifier       = "${var.identifier}-final"
   storage_encrypted               = true
+  storage_type                    = var.storage_type
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.cluster_parameters.name
   kms_key_id                      = var.kms_key_arn == "" ? null : var.kms_key_arn
   enabled_cloudwatch_logs_exports = ["error", "general", "slowquery"]
