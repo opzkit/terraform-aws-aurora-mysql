@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.1](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.2.0...v0.2.1) (2026-03-14)
+
+
+### Miscellaneous Chores
+
+* **deps:** update actions/create-github-app-token action to v3 ([#121](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/121)) ([7f9f398](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/7f9f398b9a95e16c884817ca69538e9331f5bf83))
+* **deps:** update actions/create-github-app-token digest to fee1f7d ([#120](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/120)) ([73a853b](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/73a853bb752d37e16888a6a1de456a97f3e15ebf))
+* **deps:** update pre-commit hook renovatebot/pre-commit-hooks to v43.59.4 ([#118](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/118)) ([ab9caec](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/ab9caeca3a6dd7d4b8b321e4be63ead4f6371b7a))
+* **deps:** update terraform-linters/setup-tflint action to v6.2.2 ([#122](https://github.com/opzkit/terraform-aws-aurora-mysql/issues/122)) ([1693b6b](https://github.com/opzkit/terraform-aws-aurora-mysql/commit/1693b6b651799bc167295231a89cb15c006136a5))
+
 ## [0.2.0](https://github.com/opzkit/terraform-aws-aurora-mysql/compare/v0.1.1...v0.2.0) (2026-03-03)
 
 
